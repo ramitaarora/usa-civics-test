@@ -1,5 +1,6 @@
 * {
     text-align: center;
+    margin: 20px auto;
 }
 
 .hidden {
@@ -8,4 +9,8 @@
 
 .visible {
     display: block;
+}
+
+#answers p {
+    font-style: italic;
 }
