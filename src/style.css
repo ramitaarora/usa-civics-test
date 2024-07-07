@@ -14,10 +14,11 @@
 }
 
 header {
-    padding: 20px;
+    padding: 10px;
     border-top: 1px solid white;
     border-bottom: 1px solid white;
-    width: 50%;
+    width: 70%;
+    font-size: 14px;
 }
 
 h3 {
