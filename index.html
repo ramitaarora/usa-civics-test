@@ -1,31 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./src/style.css">
     <title>US Citizenship Test</title>
 </head>
+
 <body>
     <header>
         <h1>US Citizenship Test (California)</h1>
     </header>
     <main>
         <button id="start">Start</button>
+        <div id="nav-buttons">
+            <button id="restart" class="hidden">Restart</button>
+            <button id="next" class="hidden">Next Question</button>
+        </div>
 
         <h2 id="question-header" class="hidden">Question:</h2>
         <section id="question" class="hidden"></section>
 
         <button id="answer" class="hidden">Get answer</button>
 
-        <h2 id="answer-header" class="hidden">Answer:</h2>
+        <h2 id="answer-header" class="hidden">Answer(s):</h2>
         <section id="answers" class="hidden"></section>
 
-        <button id="next" class="hidden">Next Question</button>
-
         <h2 id="done" class="hidden">Done!</h2>
-        <button id="restart" class="hidden">Restart</button>
+        <div id="bottom-buttons">
+            <button id="restart" class="hidden">Restart</button>
+            <button id="next" class="hidden">Next Question</button>
+        </div>
     </main>
     <script type="module" src="./src/script.js"></script>
 </body>
+
 </html>
