@@ -1,0 +1,22 @@
+[
+    {
+        "question": "1. What is the supreme law of the land?",
+        "answer": ["the Constitution"]
+    },
+    {
+        "question": "2. What does the Constitution do?",
+        "answer": ["sets up the government", "defines the government", "protects basic rights of Americans"]
+    },
+    {
+        "question": "3. The idea of self-government is in the first three words of the Constitution. What are these words?",
+        "answer": ["We the People"]
+    },
+    {
+        "question": "4. What is an amendment?",
+        "answer": ["a change (to the Constitution)", "an addition (to the Constitution)"]
+    },
+    {
+        "question": "5. What do we call the first ten amendments to the Constitution?",
+        "answer": ["the Bill of Rights"]
+    }
+]
