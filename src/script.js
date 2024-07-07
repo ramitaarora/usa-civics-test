@@ -1,3 +1,5 @@
+// Define HTML Elements
+
 const questionEl = document.getElementById('question');
 const questionHeader = document.getElementById('question-header');
 const answerEl = document.getElementById('answers');
@@ -7,6 +9,8 @@ const answerButton = document.getElementById('answer');
 const nextButton = document.getElementById('next');
 const restartButton = document.getElementById('restart');
 const done = document.getElementById('done');
+
+// Variables used to determine questions and not repeat any questions
 
 const finishedQuestions = [];
 let currentIndex;
@@ -33,8 +37,7 @@ startButton.addEventListener('click', () => {
     let thisQuestion = document.createElement('h3')
     thisQuestion.innerText = questions[currentIndex].question;
     questionEl.append(thisQuestion);
-}
-)
+})
 
 answerButton.addEventListener('click', () => {
     // Answer element is visible and button is hidden
@@ -79,6 +82,7 @@ nextButton.addEventListener('click', () => {
             }
         }
     } else {
+        // Declare the quiz is finished
         questionHeader.setAttribute('class', 'hidden');
         answerButton.setAttribute('class', 'hidden');
         nextButton.setAttribute('class', 'hidden');
