@@ -8,12 +8,25 @@
 </head>
 <body>
     <header>
-        <h1>US Citizenship Test</h1>
+        <h1>US Citizenship Test (California)</h1>
     </header>
     <main>
-        <section id="question"></section>
+        <button id="start">Start</button>
+
+        
+        <section id="question" class="hidden">
+            <h2>Question:</h2>
+        </section>
+
+        <button id="answer" class="hidden">Get answer</button>
+
+        <h2 class="hidden">Answer:</h2>
         <section id="answer"></section>
+
+        <button id="next" class="hidden">Next Question</button>
+
+        <button id="restart" class="hidden">Restart</button>
     </main>
-    <script src="./src/script.js"></script>
+    <script type="module" src="./src/script.js"></script>
 </body>
 </html>
