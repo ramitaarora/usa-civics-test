@@ -9,6 +9,8 @@ const answerButton = document.getElementById('answer');
 const nextButton = document.getElementById('next');
 const restartButton = document.getElementById('restart');
 const done = document.getElementById('done');
+const counter = document.getElementById('counter');
+const counterEl = document.getElementById('counter-div');
 
 // Variables used to determine questions and not repeat any questions
 
@@ -28,6 +30,7 @@ startButton.addEventListener('click', () => {
     nextButton.setAttribute('class', 'visible');
     answerButton.setAttribute('class', 'visible');
     restartButton.setAttribute('class', 'visible');
+    counterEl.setAttribute('class', 'visible');
 
     // Get random index for first question
     currentIndex = Math.floor(questions.length * Math.random());
@@ -60,6 +63,7 @@ nextButton.addEventListener('click', () => {
     answerEl.innerHTML = "";
     answerHeader.setAttribute('class', 'hidden');
     answerButton.setAttribute('class', 'visible');
+    counter.innerText = finishedQuestions.length;
 
     if (questions.length != finishedQuestions.length) {
         // Get random index for next question, first checking if the question has already been completed
@@ -86,6 +90,7 @@ nextButton.addEventListener('click', () => {
         questionHeader.setAttribute('class', 'hidden');
         answerButton.setAttribute('class', 'hidden');
         nextButton.setAttribute('class', 'hidden');
+        counterEl.setAttribute('class', 'hidden');
         done.setAttribute('class', 'visible');
     }
 
