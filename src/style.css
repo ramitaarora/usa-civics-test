@@ -38,11 +38,14 @@ h3 {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin: 0 20px 30px 20px;
 }
 
 #counter-flex {
     display: flex;
     width: fit-content;
+    justify-content: center;
+    align-items: center;
 }
 
 #counter {

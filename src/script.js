@@ -11,11 +11,14 @@ const restartButton = document.getElementById('restart');
 const done = document.getElementById('done');
 const counter = document.getElementById('counter');
 const counterEl = document.getElementById('counter-div');
+const redoButton = document.getElementById('redo');
 
 // Variables used to determine questions and not repeat any questions
 
-const finishedQuestions = [];
+let finishedQuestions = [];
 let currentIndex;
+let repeatedQuestions = [];
+let finishedRepeatedQuestions = [];
 
 // Import questions
 
@@ -31,6 +34,8 @@ startButton.addEventListener('click', () => {
     answerButton.setAttribute('class', 'visible');
     restartButton.setAttribute('class', 'visible');
     counterEl.setAttribute('class', 'visible');
+    redoButton.setAttribute('class', 'visible');
+    counter.innerText = `${finishedQuestions.length} / ${questions.length}`;
 
     // Get random index for first question
     currentIndex = Math.floor(questions.length * Math.random());
@@ -58,12 +63,55 @@ answerButton.addEventListener('click', () => {
     }
 })
 
-nextButton.addEventListener('click', () => {
+const repeatQuestions = () => {
     questionEl.innerHTML = "";
     answerEl.innerHTML = "";
     answerHeader.setAttribute('class', 'hidden');
     answerButton.setAttribute('class', 'visible');
-    counter.innerText = finishedQuestions.length;
+    counter.innerText = `${finishedRepeatedQuestions.length} / ${repeatedQuestions.length}`;
+
+    // Check if repeated questions have been completed, if not, append to page
+    let isFinished = true;
+
+    if (repeatedQuestions.length != finishedRepeatedQuestions.length) {
+        while (isFinished) {
+            currentIndex = Math.floor(repeatedQuestions.length * Math.random());
+            let findIndex = finishedRepeatedQuestions.includes(currentIndex);
+
+            if (findIndex) {
+                isFinished = true;
+            } else {
+                isFinished = false;
+
+                // Appending answer to questionEl
+                finishedRepeatedQuestions.push(currentIndex);
+                let thisQuestion = document.createElement('h3')
+                thisQuestion.innerText = questions[currentIndex].question;
+                questionEl.append(thisQuestion);
+            }
+        }
+    } else {
+        finishQuiz();
+    }
+}
+
+const finishQuiz = () => {
+    // Finish Quiz
+    questionHeader.setAttribute('class', 'hidden');
+    answerButton.setAttribute('class', 'hidden');
+    nextButton.setAttribute('class', 'hidden');
+    counterEl.setAttribute('class', 'hidden');
+    done.setAttribute('class', 'visible');
+    repeatedQuestions = [];
+    finishedQuestions = [];
+}
+
+const getNextQuestion = () => {
+    questionEl.innerHTML = "";
+    answerEl.innerHTML = "";
+    answerHeader.setAttribute('class', 'hidden');
+    answerButton.setAttribute('class', 'visible');
+    counter.innerText = `${finishedQuestions.length} / ${questions.length}`;
 
     if (questions.length != finishedQuestions.length) {
         // Get random index for next question, first checking if the question has already been completed
@@ -86,14 +134,21 @@ nextButton.addEventListener('click', () => {
             }
         }
     } else {
-        // Declare the quiz is finished
-        questionHeader.setAttribute('class', 'hidden');
-        answerButton.setAttribute('class', 'hidden');
-        nextButton.setAttribute('class', 'hidden');
-        counterEl.setAttribute('class', 'hidden');
-        done.setAttribute('class', 'visible');
+        // If there are repeated questions, repeat them
+        if (repeatedQuestions.length) {
+            redoButton.setAttribute('class', 'hidden');
+            repeatQuestions();
+        } else {
+            finishQuiz();
+        }
     }
+}
 
+nextButton.addEventListener('click', getNextQuestion)
+
+redoButton.addEventListener('click', () => {
+    repeatedQuestions.push(finishedQuestions[finishedQuestions.length - 1]);
+    getNextQuestion();
 })
 
 restartButton.addEventListener('click', () => {
