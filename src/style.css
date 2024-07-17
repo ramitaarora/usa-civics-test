@@ -34,11 +34,10 @@ h3 {
 }
 
 #nav-buttons {
-    width: 90%;
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 0 20px 30px 20px;
 }
 
 #counter-flex {

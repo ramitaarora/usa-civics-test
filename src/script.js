@@ -18,11 +18,11 @@ const redoButton = document.getElementById('redo');
 let finishedQuestions = [];
 let currentIndex;
 let repeatedQuestions = [];
-let finishedRepeatedQuestions = [];
 
 // Import questions
 
-const response = await fetch('./src/questionData.json');
+// const response = await fetch('./src/questionData.json');
+const response = await fetch('./src/test.json');
 const questions = await response.json();
 
 startButton.addEventListener('click', () => {
@@ -35,7 +35,7 @@ startButton.addEventListener('click', () => {
     restartButton.setAttribute('class', 'visible');
     counterEl.setAttribute('class', 'visible');
     redoButton.setAttribute('class', 'visible');
-    counter.innerText = `${finishedQuestions.length} / ${questions.length}`;
+    counter.innerText = `Finished Questions: ${finishedQuestions.length} / ${questions.length}`;
 
     // Get random index for first question
     currentIndex = Math.floor(questions.length * Math.random());
@@ -64,35 +64,18 @@ answerButton.addEventListener('click', () => {
 })
 
 const repeatQuestions = () => {
+    // Clear elements and redo counter for repeated questions
     questionEl.innerHTML = "";
     answerEl.innerHTML = "";
     answerHeader.setAttribute('class', 'hidden');
     answerButton.setAttribute('class', 'visible');
-    counter.innerText = `${finishedRepeatedQuestions.length} / ${repeatedQuestions.length}`;
+    counter.innerText = `Repeated Questions Left: ${repeatedQuestions.length}`;
 
-    // Check if repeated questions have been completed, if not, append to page
-    let isFinished = true;
-
-    if (repeatedQuestions.length != finishedRepeatedQuestions.length) {
-        while (isFinished) {
-            currentIndex = Math.floor(repeatedQuestions.length * Math.random());
-            let findIndex = finishedRepeatedQuestions.includes(currentIndex);
-
-            if (findIndex) {
-                isFinished = true;
-            } else {
-                isFinished = false;
-
-                // Appending answer to questionEl
-                finishedRepeatedQuestions.push(currentIndex);
-                let thisQuestion = document.createElement('h3')
-                thisQuestion.innerText = questions[currentIndex].question;
-                questionEl.append(thisQuestion);
-            }
-        }
-    } else {
-        finishQuiz();
-    }
+    // Append repeated question to the page
+    let thisQuestion = document.createElement('h3');
+    thisQuestion.innerText = questions[repeatedQuestions[0]].question;
+    questionEl.append(thisQuestion);
+    repeatedQuestions.shift();
 }
 
 const finishQuiz = () => {
@@ -111,7 +94,7 @@ const getNextQuestion = () => {
     answerEl.innerHTML = "";
     answerHeader.setAttribute('class', 'hidden');
     answerButton.setAttribute('class', 'visible');
-    counter.innerText = `${finishedQuestions.length} / ${questions.length}`;
+    counter.innerText = `Finished Questions: ${finishedQuestions.length} / ${questions.length}`;
 
     if (questions.length != finishedQuestions.length) {
         // Get random index for next question, first checking if the question has already been completed
