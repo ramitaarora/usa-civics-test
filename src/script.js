@@ -19,10 +19,15 @@ let finishedQuestions = [];
 let currentIndex;
 let repeatedQuestions = [];
 
+// Confetti Package
+
+const confetti = window.window.confetti;
+var myCanvas = document.createElement('canvas');
+
 // Import questions
 
-// const response = await fetch('./src/questionData.json');
-const response = await fetch('./src/test.json');
+const response = await fetch('./src/questionData.json');
+// const response = await fetch('./src/test.json');
 const questions = await response.json();
 
 startButton.addEventListener('click', () => {
@@ -78,16 +83,39 @@ const repeatQuestions = () => {
     repeatedQuestions.shift();
 }
 
+const confettiBurst = () => {
+    // Confetti burst
+    done.appendChild(myCanvas);
+
+    var myConfetti = confetti.create(myCanvas, {
+        resize: true,
+        useWorker: true
+    });
+
+    myConfetti({
+        particleCount: 100,
+        spread: 300,
+    });
+}
+
 const finishQuiz = () => {
-    // Finish Quiz
+    // Reset Quiz
     questionHeader.setAttribute('class', 'hidden');
     answerButton.setAttribute('class', 'hidden');
     nextButton.setAttribute('class', 'hidden');
     counterEl.setAttribute('class', 'hidden');
-    done.setAttribute('class', 'visible');
+    redoButton.setAttribute('class', 'hidden');
     repeatedQuestions = [];
     finishedQuestions = [];
+    currentIndex = 0;
+
+    // Done message
+    done.setAttribute('class', 'visible');
+
+    confettiBurst();
 }
+
+done.addEventListener('click', confettiBurst);
 
 const getNextQuestion = () => {
     questionEl.innerHTML = "";
