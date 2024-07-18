@@ -26,8 +26,8 @@ var myCanvas = document.createElement('canvas');
 
 // Import questions
 
-const response = await fetch('./src/questionData.json');
-// const response = await fetch('./src/test.json');
+// const response = await fetch('./src/questionData.json');
+const response = await fetch('./src/test.json');
 const questions = await response.json();
 
 startButton.addEventListener('click', () => {
@@ -77,6 +77,7 @@ const repeatQuestions = () => {
     counter.innerText = `Repeated Questions Left: ${repeatedQuestions.length}`;
 
     // Append repeated question to the page
+    currentIndex = repeatedQuestions[0];
     let thisQuestion = document.createElement('h3');
     thisQuestion.innerText = questions[repeatedQuestions[0]].question;
     questionEl.append(thisQuestion);
