@@ -26,8 +26,8 @@ var myCanvas = document.createElement('canvas');
 
 // Import questions
 
-// const response = await fetch('./src/questionData.json');
-const response = await fetch('./src/test.json');
+const response = await fetch('./src/questionData.json');
+// const response = await fetch('./src/test.json');
 const questions = await response.json();
 
 startButton.addEventListener('click', () => {
