@@ -4,7 +4,9 @@ const questionEl = document.getElementById('question');
 const questionHeader = document.getElementById('question-header');
 const answerEl = document.getElementById('answers');
 const answerHeader = document.getElementById('answer-header');
-const startButton = document.getElementById('start');
+const startEl = document.getElementById('start');
+const startButton = document.getElementById('start-button');
+const startGIF = document.getElementById('start-gif');
 const answerButton = document.getElementById('answer');
 const nextButton = document.getElementById('next');
 const restartButton = document.getElementById('restart');
@@ -30,16 +32,21 @@ const response = await fetch('./src/questionData.json');
 // const response = await fetch('./src/test.json');
 const questions = await response.json();
 
-startButton.addEventListener('click', () => {
-    // Set buttons visibility
+startEl.addEventListener('click', () => {
+    // Set buttons visibility for quiz
     questionEl.setAttribute('class', 'visible');
     questionHeader.setAttribute('class', 'visible');
-    startButton.setAttribute('class', 'hidden');
     nextButton.setAttribute('class', 'visible');
     answerButton.setAttribute('class', 'visible');
     restartButton.setAttribute('class', 'visible');
     counterEl.setAttribute('class', 'visible');
     redoButton.setAttribute('class', 'visible');
+    // Hide Start Elements
+    startButton.setAttribute('class', 'hidden');
+    startEl.setAttribute('class', 'hidden');
+    startGIF.setAttribute('class', 'hidden');
+
+    // Set up counter
     counter.innerText = `Finished Questions: ${finishedQuestions.length} / ${questions.length}`;
 
     // Get random index for first question

@@ -78,3 +78,9 @@ canvas {
 #restart {
     z-index: 101;
 }
+
+#start {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+}
