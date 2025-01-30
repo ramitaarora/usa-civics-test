@@ -77,7 +77,7 @@
     },
     {
         "question": "20. Who is one of your state’s U.S. Senators now?",
-        "answer": ["Alex Padilla", "Laphonza Butler"]
+        "answer": ["Alex Padilla", "Adam B. Schiff"]
     },
     {
         "question": "21. The House of Representatives has how many voting members?",
@@ -109,11 +109,11 @@
     },
     {
         "question": "28. What is the name of the President of the United States now?",
-        "answer": ["Joe Biden", "Biden"]
+        "answer": ["Donald Trump"]
     },
     {
         "question": "29. What is the name of the Vice President of the United States now?",
-        "answer": ["Kamala Harris", "Harris"]
+        "answer": ["JD Vance"]
     },
     {
         "question": "30. If the President can no longer serve, who becomes President?",
